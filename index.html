@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="tg">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ҳисобкунаки Сохтмон</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#f2f5f8;color:#123}
+header{background:#073b78;color:#fff;padding:22px 18px;border-radius:0 0 22px 22px}
+h1{margin:0;font-size:25px}.sub{opacity:.85;margin-top:5px}
+main{padding:16px;max-width:560px;margin:auto}.card{background:#fff;border-radius:16px;padding:16px;margin:12px 0;box-shadow:0 3px 12px #0001}
+input{width:100%;box-sizing:border-box;padding:12px;border:1px solid #ccd5df;border-radius:10px;margin:6px 0 12px;font-size:16px}
+label{font-size:14px;font-weight:bold}button{width:100%;border:0;border-radius:12px;padding:13px;background:#12b84a;color:#fff;font-size:17px;font-weight:bold}
+.result{background:#e3fff0;padding:14px;border-radius:12px;margin-top:12px;font-size:18px}.hint{font-size:13px;color:#667;margin:0 0 12px}
+</style>
+</head>
+<body>
+<header><h1>🏠 Ҳисобкунаки Сохтмон</h1><div class="sub">Тоҷикистон • осон • фоиданок</div></header>
+<main>
+
+<div class="card"><h2>🧱 Блок</h2>
+<label>Дарозии девор (м)</label><input id="L" type="number" value="20" step=".1">
+<label>Баландии девор (м)</label><input id="H" type="number" value="2.8" step=".1">
+<label>Масоҳати як блок (м²)</label><input id="A" type="number" value=".0741" step=".0001">
+<label>Захира (%)</label><input id="R" type="number" value="5">
+<button onclick="block()">Ҳисоб кардан</button><div id="bo" class="result">Натиҷа дар ин ҷо мебарояд.</div></div>
+
+<div class="card"><h2>🔩 Арматур</h2>
+<p class="hint">Барои плитаи 20×3 м, фосила 10 см, як қабат.</p>
+<label>Дарозии майдон (м)</label><input id="rl" type="number" value="20">
+<label>Бари майдон (м)</label><input id="rw" type="number" value="3">
+<label>Фосила (см)</label><input id="rs" type="number" value="10">
+<label>Дарозии як арматур (м)</label><input id="rb" type="number" value="6">
+<label>Диаметр (мм)</label><input id="rd" type="number" value="16">
+<button onclick="rebar()">Ҳисоб кардан</button><div id="ro" class="result">Натиҷа дар ин ҷо мебарояд.</div></div>
+
+<div class="card"><h2>🏠 Шифер</h2>
+<p class="hint">Бо ҳампӯшонии паҳлӯӣ ва дарозӣ ҳисоб карда мешавад.</p>
+<label>Дарозии сақф (м)</label><input id="sl" type="number" value="20">
+<label>Барои ҳисоб — бараш (м)</label><input id="sw" type="number" value="3">
+<label>Дарозии шифер (м)</label><input id="slen" type="number" value="1.75">
+<label>Бари шифер (м)</label><input id="swidth" type="number" value="1.20">
+<label>Ҳампӯшонии паҳлӯӣ (см)</label><input id="side" type="number" value="10">
+<label>Ҳампӯшонии дарозӣ (см)</label><input id="ends" type="number" value="15">
+<label>Захира (%)</label><input id="sr" type="number" value="5">
+<button onclick="roof()">Ҳисоб кардан</button><div id="so" class="result">Натиҷа дар ин ҷо мебарояд.</div></div>
+
+<div class="card"><h2>📐 Бетон</h2>
+<label>Дарозӣ (м)</label><input id="bl" type="number" value="20">
+<label>Бар (м)</label><input id="bw" type="number" value="3">
+<label>Ғафсӣ (м)</label><input id="bt" type="number" value=".10">
+<button onclick="concrete()">Ҳисоб кардан</button><div id="co" class="result">Натиҷа дар ин ҷо мебарояд.</div></div>
+
+
+<div class="card"><h2>💰 Ҳисобкунаки нарх</h2>
+<p class="hint">Миқдор ва нархи як дона/як воҳидро ворид кунед.</p>
+<label>Блок — миқдор (дона)</label><input id="pblock" type="number" value="0">
+<label>Нархи 1 блок (сомонӣ)</label><input id="pbprice" type="number" value="0">
+<label>Арматур — миқдор (дона)</label><input id="prebar" type="number" value="0">
+<label>Нархи 1 арматур (сомонӣ)</label><input id="prprice" type="number" value="0">
+<label>Шифер — миқдор (дона)</label><input id="proof" type="number" value="0">
+<label>Нархи 1 шифер (сомонӣ)</label><input id="psprice" type="number" value="0">
+<label>Бетон — миқдор (м³)</label><input id="pconc" type="number" value="0" step=".01">
+<label>Нархи 1 м³ бетон (сомонӣ)</label><input id="pcprice" type="number" value="0">
+<label>Семент — миқдор (халта)</label><input id="pcem" type="number" value="0">
+<label>Нархи 1 халта семент (сомонӣ)</label><input id="pcemprice" type="number" value="0">
+<button onclick="prices()">Ҳисоби умумӣ</button>
+<div id="po" class="result">Ҳамагӣ дар ин ҷо мебарояд.</div>
+</div>
+
+
+<div class="card"><h2>💾 Ҳисобҳои захирашуда</h2>
+<p class="hint">Номи ҳисобро навис ва натиҷаро дар ҳамин телефон нигоҳ дор.</p>
+<input id="saveName" type="text" placeholder="Мисол: Хонаи 20×3">
+<button onclick="saveCalc()">💾 Захира кардан</button>
+<div id="saved" class="result">Ҳоло ҳисоб захира нашудааст.</div>
+</div>
+
+</main>
+<script>
+const n=x=>parseFloat(document.getElementById(x).value)||0;
+function block(){let base=n('L')*n('H')/n('A'),t=Math.ceil(base*(1+n('R')/100));document.getElementById('bo').innerHTML=`Тахминан <b>${t.toLocaleString('ru-RU')} дона блок</b>`}
+function rebar(){
+ let L=n('rl'),W=n('rw'),S=n('rs')/100,B=n('rb');
+ let bars=Math.ceil(W/S)+1, total=bars*L, pieces=Math.ceil(total/B);
+ document.getElementById('ro').innerHTML=`Шумораи хатҳо: <b>${bars} дона</b><br>Дарозии умумӣ: <b>${total.toFixed(1)} м</b><br>Арматури 6-метра: <b>${pieces} дона</b><br><small>Диаметр: ${n('rd')} мм • як қабат</small>`;
+}
+function roof(){
+ let L=n('sl'),W=n('sw'),len=n('slen')-n('ends')/100,w=n('swidth')-n('side')/100;
+ let rows=Math.ceil(L/len),per=Math.ceil(W/w),base=rows*per,total=Math.ceil(base*(1+n('sr')/100));
+ document.getElementById('so').innerHTML=`Дар як қатор: <b>${per} дона</b><br>Қаторҳо: <b>${rows}</b><br>Ҳамагӣ: <b>${total} дона шифер</b><br><small>бо ${n('sr')}% захира</small>`;
+}
+function concrete(){let v=n('bl')*n('bw')*n('bt');document.getElementById('co').innerHTML=`Ҳаҷми бетон: <b>${v.toFixed(2)} м³</b>`}
+
+function prices(){
+ let b=n('pblock')*n('pbprice'),r=n('prebar')*n('prprice'),s=n('proof')*n('psprice'),
+ c=n('pconc')*n('pcprice'),ce=n('pcem')*n('pcemprice'),t=b+r+s+c+ce;
+ document.getElementById('po').innerHTML=
+ `🧱 Блок: <b>${b.toFixed(2)} сомонӣ</b><br>
+ 🔩 Арматур: <b>${r.toFixed(2)} сомонӣ</b><br>
+ 🏠 Шифер: <b>${s.toFixed(2)} сомонӣ</b><br>
+ 📐 Бетон: <b>${c.toFixed(2)} сомонӣ</b><br>
+ 🪨 Семент: <b>${ce.toFixed(2)} сомонӣ</b><hr>
+ 💰 ҲАМАГӢ: <b>${t.toFixed(2)} сомонӣ</b>`;
+}
+
+function saveCalc(){
+ const name=document.getElementById('saveName').value.trim() || 'Ҳисоби сохтмон';
+ const data={
+  name:name,
+  block:n('pblock')*n('pbprice'),
+  rebar:n('prebar')*n('prprice'),
+  roof:n('proof')*n('psprice'),
+  concrete:n('pconc')*n('pcprice'),
+  cement:n('pcem')*n('pcemprice')
+ };
+ data.total=data.block+data.rebar+data.roof+data.concrete+data.cement;
+ let list=JSON.parse(localStorage.getItem('construction_calcs')||'[]');
+ list.unshift(data); list=list.slice(0,10);
+ localStorage.setItem('construction_calcs',JSON.stringify(list));
+ showSaved();
+}
+function showSaved(){
+ const list=JSON.parse(localStorage.getItem('construction_calcs')||'[]');
+ const el=document.getElementById('saved');
+ if(!list.length){el.textContent='Ҳоло ҳисоб захира нашудааст.';return;}
+ el.innerHTML=list.map((x,i)=>`<div style="padding:8px 0;border-bottom:1px solid #ddd">
+ <b>${i+1}. ${x.name}</b><br>💰 ${x.total.toFixed(2)} сомонӣ
+ </div>`).join('')+
+ `<button style="margin-top:10px;background:#c62828" onclick="clearSaved()">🗑️ Пок кардани ҳисобҳо</button>`;
+}
+function clearSaved(){localStorage.removeItem('construction_calcs');showSaved();}
+showSaved();
+</script>
+</body></html>
